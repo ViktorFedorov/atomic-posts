@@ -110,27 +110,27 @@ function Results() {
 }
 
 function Main() {
-  const { posts, onAddPost } = useContext(PostContext)
-
   return (
     <main>
-      <FormAddPost onAddPost={onAddPost} />
-      <Posts posts={posts} />
+      <FormAddPost />
+      <Posts />
     </main>
   )
 }
 
-function Posts({ posts }) {
+function Posts() {
   return (
     <section>
-      <List posts={posts} />
+      <List />
     </section>
   )
 }
 
-function FormAddPost({ onAddPost }) {
+function FormAddPost() {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
+
+  const { onAddPost } = useContext(PostContext)
 
   const handleSubmit = function (e) {
     e.preventDefault()
@@ -157,7 +157,9 @@ function FormAddPost({ onAddPost }) {
   )
 }
 
-function List({ posts }) {
+function List() {
+  const { posts } = useContext(PostContext)
+
   return (
     <ul>
       {posts.map((post, i) => (
